@@ -106,6 +106,7 @@ async fn proxy(
         // .method(req.method())
         // .body(Empty::<Bytes>::new()).unwrap();
         req.headers_mut().insert(HeaderName::from_str("Host").unwrap(), HeaderValue::from_str(&format!("{}",addr_parse.host().unwrap())).unwrap());
+        req.headers_mut().remove(HeaderName::from_str("Origin").unwrap()).unwrap();
         if unsafe { ALLOW_PRINT_LOG }{
             println!("request:--------开始\n {:#?} \n--------结束", req);
         }
